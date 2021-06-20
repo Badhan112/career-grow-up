@@ -3,7 +3,7 @@ import TopNavBar from '../../Shared/TopNavBar/TopNavBar';
 
 const Applications = () => {
     return (
-        <div>
+        <>
             <header>
                 <TopNavBar applications={true} />
             </header>
@@ -12,7 +12,7 @@ const Applications = () => {
                     <h1>Application</h1>
                 </section>
             </main>
-        </div>
+        </>
     );
 };
 

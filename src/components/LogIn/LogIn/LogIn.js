@@ -3,7 +3,7 @@ import TopNavBar from '../../Shared/TopNavBar/TopNavBar';
 
 const LogIn = () => {
     return (
-        <div>
+        <>
             <header>
                 <TopNavBar login={true} />
             </header>
@@ -12,7 +12,7 @@ const LogIn = () => {
                     <h1>Login</h1>
                 </section>
             </main>
-        </div>
+        </>
     );
 };
 

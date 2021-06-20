@@ -22,17 +22,17 @@ const TopNavBar = ({ home, applications, login }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item ms-3">
-              <Link to="/home" className={`nav-link fs-3 ${home ? 'border-bottom border-3' : ''}`}>
+              <Link to="/home" className={`nav-link fs-3 ${home ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
                 Home
               </Link>
             </li>
             <li className="nav-item ms-3">
-              <Link to="/applications" className={`nav-link fs-3 ${applications ? 'border-bottom border-3' : ''}`} >
+              <Link to="/applications" className={`nav-link fs-3 ${applications ? 'border-bottom border-3 bg-light rounded-3' : ''}`} >
                 Applications
               </Link>
             </li>
             <li className="nav-item ms-3">
-              <Link to="/login" className={`nav-link fs-3 ${login ? 'border-bottom border-3' : ''}`}>
+              <Link to="/login" className={`nav-link fs-3 ${login ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
                 Log In
               </Link>
             </li>
