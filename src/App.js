@@ -7,31 +7,35 @@ import { createContext, useState } from 'react';
 import Profile from './components/Profile/Profile';
 
 export const UserContext = createContext();
+export const AccountTypeContext = createContext();
 
 function App() {
   const [user, setUser] = useState({});
+  const [accountType, setAccountType] = useState('');
 
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <Router>
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='/home'>
-            <Home />
-          </Route>
-          <Route path='/applications'>
-            <Applications />
-          </Route>
-          <Route path='/login'>
-            <LogIn />
-          </Route>
-          <Route path='/profile'>
-            <Profile />
-          </Route>
-        </Switch>
-      </Router>
+      <AccountTypeContext.Provider value={[accountType, setAccountType]}>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route path='/home'>
+              <Home />
+            </Route>
+            <Route path='/applications'>
+              <Applications />
+            </Route>
+            <Route path='/login'>
+              <LogIn />
+            </Route>
+            <Route path='/profile'>
+              <Profile />
+            </Route>
+          </Switch>
+        </Router>
+      </AccountTypeContext.Provider>
     </UserContext.Provider>
   );
 }

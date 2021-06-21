@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../../App";
+import { AccountTypeContext, UserContext } from "../../../App";
 
 const TopNavBar = ({ home, applications, login, profile }) => {
   const [user] = useContext(UserContext);
-  console.log(user);
+  const [accountType, setAccountType] = useContext(AccountTypeContext);
+
+  useEffect(() => {
+    fetch(`http://localhost:5100/check-account-type?email=${user.email}`)
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }, [user, setAccountType]);
 
   return (
     <nav className="navbar navbar-expand-md navbar-light shadow-sm">
@@ -30,18 +36,35 @@ const TopNavBar = ({ home, applications, login, profile }) => {
                 Home
               </Link>
             </li>
-            <li className="nav-item ms-3">
-              <Link to="/applications" className={`nav-link fs-3 ${applications ? 'border-bottom border-3 bg-light rounded-3' : ''}`} >
-                Applications
-              </Link>
-            </li>
             {
-              user.name ?
-                <li className="nav-item ms-3">
-                  <Link to="/profile" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
-                    Profile
-                  </Link>
-                </li>
+              accountType === 'job seeker' &&
+              <li className="nav-item ms-3">
+                <Link to="/profile" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                  Profile
+                </Link>
+              </li>
+            }
+            {
+              user.name ? <>
+
+                {
+                  accountType === 'employer' &&
+                  <li className="nav-item ms-3">
+                    <Link to="/dashboard" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                      dashboard
+                    </Link>
+                  </li>
+                }
+                {
+                  accountType === 'admin' &&
+                  <li className="nav-item ms-3">
+                    <Link to="/admin" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                      Admin Panel
+                    </Link>
+                  </li>
+                }
+              </>
+
                 : <li className="nav-item ms-3">
                   <Link to="/login" className={`nav-link fs-3 ${login ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
                     Log In
