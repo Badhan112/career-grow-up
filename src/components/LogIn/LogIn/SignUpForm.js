@@ -32,7 +32,7 @@ const SignUpForm = () => {
     }
 
     const sendDataToDB = user => {
-        fetch('http://localhost:5100/add-job-seeker', {
+        fetch('https://desolate-forest-54482.herokuapp.com/add-job-seeker', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {

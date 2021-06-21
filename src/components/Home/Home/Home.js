@@ -12,7 +12,7 @@ const Home = () => {
   const newDisplayItems = jobs.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    fetch(`http://localhost:5100/jobs?keywords=${searchKeywords}`)
+    fetch(`https://desolate-forest-54482.herokuapp.com/jobs?keywords=${searchKeywords}`)
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, [searchKeywords]);

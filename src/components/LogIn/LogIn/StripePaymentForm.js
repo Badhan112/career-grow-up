@@ -42,7 +42,7 @@ const StripePaymentForm = ({ newUser }) => {
     };
 
     const sendDataToDB = employer => {
-        fetch('http://localhost:5100/add-employer', {
+        fetch('https://desolate-forest-54482.herokuapp.com/add-employer', {
             method: 'POST',
             body: JSON.stringify(employer),
             headers: {

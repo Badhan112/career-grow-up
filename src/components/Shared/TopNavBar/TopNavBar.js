@@ -7,7 +7,7 @@ const TopNavBar = ({ home, applications, login, profile }) => {
   const [accountType, setAccountType] = useContext(AccountTypeContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5100/check-account-type?email=${user.email}`)
+    fetch(`https://desolate-forest-54482.herokuapp.com/check-account-type?email=${user.email}`)
       .then(res => res.json())
       .then(data => console.log(data));
   }, [user, setAccountType]);
