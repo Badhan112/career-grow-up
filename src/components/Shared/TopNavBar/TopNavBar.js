@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 
-const TopNavBar = ({ home, applications, login }) => {
+const TopNavBar = ({ home, applications, login, profile }) => {
+  const [user] = useContext(UserContext);
+  console.log(user);
+
   return (
     <nav className="navbar navbar-expand-md navbar-light shadow-sm">
       <div className="container">
@@ -31,11 +35,19 @@ const TopNavBar = ({ home, applications, login }) => {
                 Applications
               </Link>
             </li>
-            <li className="nav-item ms-3">
-              <Link to="/login" className={`nav-link fs-3 ${login ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
-                Log In
-              </Link>
-            </li>
+            {
+              user.name ?
+                <li className="nav-item ms-3">
+                  <Link to="/profile" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                    Profile
+                  </Link>
+                </li>
+                : <li className="nav-item ms-3">
+                  <Link to="/login" className={`nav-link fs-3 ${login ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                    Log In
+                  </Link>
+                </li>
+            }
           </ul>
         </div>
       </div>
