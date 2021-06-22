@@ -7,7 +7,7 @@ const TopNavBar = ({ home, login, applicantProfile, adminPanel, employerProfile 
   const [accountType, setAccountType] = useContext(AccountTypeContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5100/check-account-type?email=${user.email}`)
+    fetch(`https://desolate-forest-54482.herokuapp.com/check-account-type?email=${user.email}`)
       .then(res => res.json())
       .then(data => setAccountType(data.accountType))
       .catch(() => setAccountType(null));
