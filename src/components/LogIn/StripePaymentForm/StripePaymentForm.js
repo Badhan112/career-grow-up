@@ -4,8 +4,8 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import firebase from "firebase/app";
 import "firebase/auth";
-import { firebaseConfig } from "./firebase.config";
-import { useHistory } from 'react-router-dom';
+import { firebaseConfig } from "../firebase.config";
+import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../../App';
 
 
@@ -15,6 +15,9 @@ const StripePaymentForm = ({ newUser }) => {
     const stripe = useStripe();
     const elements = useElements();
     const history = useHistory();
+    const location = useLocation();
+
+    const { from } = location.state || { from: { pathname: '/' } };
 
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
@@ -54,7 +57,7 @@ const StripePaymentForm = ({ newUser }) => {
             .then(result => {
                 if (result) {
                     setUser(employer);
-                    history.push('/home');
+                    history.replace(from);
                 } else {
                     alert('Unexpected Error');
                 }

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import TopNavBar from "../../Shared/TopNavBar/TopNavBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import LogInForm from "./LogInForm";
-import SignUpForm from "./SignUpForm";
+import LogInForm from "../LogInForm/LogInForm";
+import SignUpForm from "../SIgnUpForm/SignUpForm";
 
 
 const LogIn = () => {

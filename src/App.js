@@ -1,17 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home/Home';
-import Applications from './components/Applications/Applications/Applications';
 import LogIn from './components/LogIn/LogIn/LogIn';
 import { createContext, useState } from 'react';
-import Profile from './components/Profile/Profile';
+import ApplicantProfile from './components/ApplicantProfile/ApplicantProfile';
+import EmployerProfile from './components/EmployerProfile/EmployerProfile/EmployerProfile';
+import AdminPanel from './components/AdminPanel/AdminPanel/AdminPanel';
+import EmployerRoute from './components/Shared/EmployerRoute/EmployerRoute';
+import AdminRoute from './components/Shared/AdminRoute/AdminRoute';
+import ApplicantRoute from './components/Shared/ApplicantRoute/ApplicantRoute';
 
 export const UserContext = createContext();
 export const AccountTypeContext = createContext();
 
 function App() {
   const [user, setUser] = useState({});
-  const [accountType, setAccountType] = useState('');
+  const [accountType, setAccountType] = useState(null);
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -21,18 +25,27 @@ function App() {
             <Route exact path='/'>
               <Home />
             </Route>
+
             <Route path='/home'>
               <Home />
             </Route>
-            <Route path='/applications'>
-              <Applications />
-            </Route>
+
             <Route path='/login'>
               <LogIn />
             </Route>
-            <Route path='/profile'>
-              <Profile />
-            </Route>
+
+            <ApplicantRoute path='/applicant-profile'>
+              <ApplicantProfile />
+            </ApplicantRoute>
+
+            <EmployerRoute path='/employer-profile'>
+              <EmployerProfile />
+            </EmployerRoute>
+
+            <AdminRoute path='/admin-panel'>
+              <AdminPanel />
+            </AdminRoute>
+
           </Switch>
         </Router>
       </AccountTypeContext.Provider>

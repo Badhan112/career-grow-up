@@ -3,14 +3,17 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import firebase from "firebase/app";
 import "firebase/auth";
-import { firebaseConfig } from "./firebase.config";
+import { firebaseConfig } from "../firebase.config";
 import { UserContext } from '../../../App';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const LogInForm = () => {
     const [user, setUser] = useContext(UserContext);
     const history = useHistory();
+    const location = useLocation();
     const newUser = {};
+
+    const { from } = location.state || { from: { pathname: '/' } };
 
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
@@ -31,6 +34,7 @@ const LogInForm = () => {
                     email: user.email,
                 }
                 setUser(authUser);
+                history.replace(from);
             })
             .catch((error) => {
                 alert(error.message);
@@ -48,7 +52,7 @@ const LogInForm = () => {
                     email: user.email,
                 }
                 setUser(newUser);
-                history.push('/home');
+                history.replace(from);
             }).catch((error) => {
                 alert(error.message);
             });

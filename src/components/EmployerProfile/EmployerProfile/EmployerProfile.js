@@ -1,19 +1,19 @@
 import React from 'react';
 import TopNavBar from '../../Shared/TopNavBar/TopNavBar';
 
-const Applications = () => {
+const EmployerProfile = () => {
     return (
         <>
             <header>
-                <TopNavBar applications={true} />
+                <TopNavBar employerProfile={true} />
             </header>
             <main className='bg-light py-5'>
                 <section className='container'>
-                    <h1>Application</h1>
+                    <h1>Employer Profile</h1>
                 </section>
             </main>
         </>
     );
 };
 
-export default Applications;
+export default EmployerProfile;

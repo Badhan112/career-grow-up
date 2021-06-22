@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import StripePaymentForm from "./StripePaymentForm";
 import { UserContext } from "../../../App";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { firebaseConfig } from "./firebase.config";
+import { firebaseConfig } from "../firebase.config";
+import StripePaymentForm from "../StripePaymentForm/StripePaymentForm"
 
 const stripePromise = loadStripe('pk_test_51IeOEIEqeo4UWiIa9FGmXl2bdQPA9pY6x3AKjIyj48N5gCWHIW8MrHb5sc9GKj4IbGCa8e6hJSTVatGVmHIiNGzi00eCFUjR07');
 

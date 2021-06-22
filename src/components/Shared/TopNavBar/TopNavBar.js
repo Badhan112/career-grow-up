@@ -2,15 +2,16 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AccountTypeContext, UserContext } from "../../../App";
 
-const TopNavBar = ({ home, applications, login, profile }) => {
+const TopNavBar = ({ home, login, applicantProfile, adminPanel, employerProfile }) => {
   const [user] = useContext(UserContext);
   const [accountType, setAccountType] = useContext(AccountTypeContext);
 
   useEffect(() => {
-    fetch(`https://desolate-forest-54482.herokuapp.com/check-account-type?email=${user.email}`)
+    fetch(`http://localhost:5100/check-account-type?email=${user.email}`)
       .then(res => res.json())
-      .then(data => console.log(data));
-  }, [user, setAccountType]);
+      .then(data => setAccountType(data.accountType))
+      .catch(() => setAccountType(null));
+  }, [user.email, setAccountType])
 
   return (
     <nav className="navbar navbar-expand-md navbar-light shadow-sm">
@@ -36,29 +37,31 @@ const TopNavBar = ({ home, applications, login, profile }) => {
                 Home
               </Link>
             </li>
-            {
-              accountType === 'job seeker' &&
-              <li className="nav-item ms-3">
-                <Link to="/profile" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
-                  Profile
-                </Link>
-              </li>
-            }
+
             {
               user.name ? <>
+                {
+                  accountType === 'job seeker' &&
+                  <li className="nav-item ms-3">
+                    <Link to="/applicant-profile" className={`nav-link fs-3 ${applicantProfile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                      Applicant Profile
+                    </Link>
+                  </li>
+                }
 
                 {
                   accountType === 'employer' &&
                   <li className="nav-item ms-3">
-                    <Link to="/dashboard" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
-                      dashboard
+                    <Link to="/employer-profile" className={`nav-link fs-3 ${employerProfile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                      Employer Profile
                     </Link>
                   </li>
                 }
+
                 {
                   accountType === 'admin' &&
                   <li className="nav-item ms-3">
-                    <Link to="/admin" className={`nav-link fs-3 ${profile ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
+                    <Link to="/admin-panel" className={`nav-link fs-3 ${adminPanel ? 'border-bottom border-3 bg-light rounded-3' : ''}`}>
                       Admin Panel
                     </Link>
                   </li>

@@ -1,19 +1,19 @@
 import React from 'react';
-import TopNavBar from '../Shared/TopNavBar/TopNavBar';
+import TopNavBar from '../../Shared/TopNavBar/TopNavBar';
 
-const Profile = () => {
+const AdminPanel = () => {
     return (
         <>
             <header>
-                <TopNavBar profile={true} />
+                <TopNavBar adminPanel={true} />
             </header>
             <main className='bg-light py-5'>
                 <section className='container'>
-                    <h1>Profile</h1>
+                    <h1>Admin Panel</h1>
                 </section>
             </main>
         </>
     );
 };
 
-export default Profile;
+export default AdminPanel;
