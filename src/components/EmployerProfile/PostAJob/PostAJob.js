@@ -26,7 +26,7 @@ const PostAJob = () => {
                 packageRenewalDate: newPackageRenewalDate,
             }
 
-            fetch(`http://localhost:5100/update-package-offer/${user.email}`, {
+            fetch(`https://desolate-forest-54482.herokuapp.com/update-package-offer/${user.email}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const PostAJob = () => {
                 if (result) {
                     const newRemainingJobPost = remainingJobPost -1;
 
-                    fetch(`http://localhost:5100/update-remaining-post/${user.email}`, {
+                    fetch(`https://desolate-forest-54482.herokuapp.com/update-remaining-post/${user.email}`, {
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
