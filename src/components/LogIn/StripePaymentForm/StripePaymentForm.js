@@ -68,10 +68,26 @@ const StripePaymentForm = ({ newUser }) => {
     const handlePasswordSignUp = async (event) => {
         event.preventDefault();
         await handleCardSubmit();
+        let packageRenewalDate = new Date();
+        packageRenewalDate.setDate(packageRenewalDate.getDate() + 30);
+        let remainingJobPost;
+
+        if(newUser.employerPackage === 'premium'){
+            remainingJobPost = 30;
+        } else if(newUser.employerPackage === 'standard'){
+            remainingJobPost = 20;
+        } else if(newUser.employerPackage === 'basic'){
+            remainingJobPost = 10;
+        }
+
         const employer = await {
             ...newUser,
-            cardInfo
+            cardInfo,
+            accountCreationDate: new Date(),
+            packageRenewalDate,
+            remainingJobPost
         };
+        
         firebase.auth().createUserWithEmailAndPassword(employer.email, employer.password)
             .then((userCredential) => {
                 const user = userCredential.user;

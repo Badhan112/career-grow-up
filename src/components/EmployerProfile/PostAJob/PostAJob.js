@@ -1,9 +1,46 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../App';
 
 const PostAJob = () => {
     const [user] = useContext(UserContext);
     const [jobPost, setJobPost] = useState({});
+
+    const { name, email, packageRenewalDate, remainingJobPost, employerPackage } = user;
+
+    useEffect(() => {
+        if(packageRenewalDate - (new Date()) < 0){
+            let newRemainingJobPost;
+            let newPackageRenewalDate = new Date();
+            newPackageRenewalDate.setDate(newPackageRenewalDate.getDate() + 30);
+
+            if(employerPackage === 'premium'){
+                newRemainingJobPost = 30;
+            } else if(employerPackage === 'standard'){
+                newRemainingJobPost = 20;
+            } else if(employerPackage === 'basic'){
+                newRemainingJobPost = 10;
+            }
+
+            const updatedPakageOffer = {
+                remainingJobPost: newRemainingJobPost,
+                packageRenewalDate: newPackageRenewalDate,
+            }
+
+            fetch(`http://localhost:5100/update-package-offer/${user.email}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedPakageOffer),
+            })
+            .then(res => res.json())
+            .then(result => {
+                if(result){
+                    alert('Your Package Offer Updated');
+                }
+            })
+        }
+    }, [packageRenewalDate, employerPackage, user.email]);    
 
     const handleBlur = event => {
         const newJob = { ...jobPost };
@@ -19,9 +56,10 @@ const PostAJob = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const newJobPost = { ...jobPost };
-        newJobPost.name = user.name;
-        newJobPost.email = user.email;
+        if(remainingJobPost > 0){
+            const newJobPost = { ...jobPost };
+        newJobPost.name = name;
+        newJobPost.email = email;
         newJobPost.postedTime = new Date();
 
         fetch('https://desolate-forest-54482.herokuapp.com/add-job-post', {
@@ -34,12 +72,32 @@ const PostAJob = () => {
             .then(res => res.json())
             .then(result => {
                 if (result) {
-                    alert('Job Posted Successfully\nPlease wait for Approval');
+                    const newRemainingJobPost = remainingJobPost -1;
+
+                    fetch(`http://localhost:5100/update-remaining-post/${user.email}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ remainingJobPost: newRemainingJobPost }),
+                    })
+                    .then(res => res.json())
+                    .then(result => {
+                        if(result){
+                            alert('Job Posted Successfully\nPlease wait for Approval');
+                        } else{
+                            alert('Unexpected Error');
+                        }
+                    })
+                    .catch(() => alert('Unexpected Error'));
                 } else {
                     alert('Unexpected Error');
                 }
             })
             .catch(() => alert('Unexpected Error'));
+        } else{
+            alert('You are Out Of Remaining Job Post');
+        }
     }
 
     return (
