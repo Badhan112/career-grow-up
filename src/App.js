@@ -9,6 +9,7 @@ import AdminPanel from './components/AdminPanel/AdminPanel/AdminPanel';
 import EmployerRoute from './components/Shared/EmployerRoute/EmployerRoute';
 import AdminRoute from './components/Shared/AdminRoute/AdminRoute';
 import ApplicantRoute from './components/Shared/ApplicantRoute/ApplicantRoute';
+import EditApproval from './components/AdminPanel/EditApproval/EditApproval';
 
 export const UserContext = createContext();
 export const AccountTypeContext = createContext();
@@ -44,6 +45,10 @@ function App() {
 
             <AdminRoute path='/admin-panel'>
               <AdminPanel />
+            </AdminRoute>
+
+            <AdminRoute path='/edit-approval/:id'>
+              <EditApproval />
             </AdminRoute>
 
           </Switch>

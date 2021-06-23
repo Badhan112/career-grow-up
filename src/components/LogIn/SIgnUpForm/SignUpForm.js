@@ -114,8 +114,8 @@ const SignUpForm = () => {
                     />
                     {
                         typesOfAccount === "employer" ? <>
-                            <div class="form-floating mt-3">
-                                <select onChange={handleInput} class="form-select" name="employerPackage" >
+                            <div className="form-floating mt-3">
+                                <select onChange={handleInput} className="form-select" name="employerPackage" >
                                     <option selected>Employer Package</option>
                                     <option value="premium">Premium</option>
                                     <option value="standard">Standard</option>

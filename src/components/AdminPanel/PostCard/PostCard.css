@@ -1,0 +1,9 @@
+.approval-status{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: darkslategrey;
+    padding: 5px 15px;
+    color: whitesmoke;
+    border-radius: 7px;
+}
