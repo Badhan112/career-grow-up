@@ -1,0 +1,8 @@
+.chip{
+    display: inline-block;
+    background-color: teal;
+    padding: 5px 15px;
+    color: whitesmoke;
+    margin: 5px;
+    border-radius: 50px;
+}

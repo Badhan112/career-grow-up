@@ -9,7 +9,7 @@ const EditApproval = () => {
     const history = useHistory();
 
     useEffect(() => {
-        fetch(`http://localhost:5100/job-details/${id}`)
+        fetch(`https://desolate-forest-54482.herokuapp.com/job-details/${id}`)
             .then(res => res.json())
             .then(data => setJobPost(data));
     }, [id]);
@@ -21,7 +21,7 @@ const EditApproval = () => {
     }
 
     const handleClick = () => {
-        fetch(`http://localhost:5100/edit-approval/${id}`,{
+        fetch(`https://desolate-forest-54482.herokuapp.com/edit-approval/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

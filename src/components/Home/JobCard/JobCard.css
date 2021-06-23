@@ -1,0 +1,7 @@
+.date{
+    position: absolute;
+    right: 0;
+    padding: 5px 15px;
+    background-color: thistle;
+    border-radius: 5px 0 0 5px;
+}

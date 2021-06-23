@@ -3,7 +3,7 @@ import './App.css';
 import Home from './components/Home/Home/Home';
 import LogIn from './components/LogIn/LogIn/LogIn';
 import { createContext, useState } from 'react';
-import ApplicantProfile from './components/ApplicantProfile/ApplicantProfile';
+import ApplicantProfile from './components/ApplicantProfile/ApplicantProfile/ApplicantProfile';
 import EmployerProfile from './components/EmployerProfile/EmployerProfile/EmployerProfile';
 import AdminPanel from './components/AdminPanel/AdminPanel/AdminPanel';
 import EmployerRoute from './components/Shared/EmployerRoute/EmployerRoute';

@@ -7,11 +7,11 @@ const AdminPanel = () => {
     const [approvedPost, setApprovedPost] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5100/pending-post')
+        fetch('https://desolate-forest-54482.herokuapp.com/pending-post')
         .then(res => res.json())
         .then(data => setPendingPost(data));
 
-        fetch('http://localhost:5100/approved-post')
+        fetch('https://desolate-forest-54482.herokuapp.com/approved-post')
         .then(res => res.json())
         .then(data => setApprovedPost(data));
     }, [])
@@ -30,7 +30,7 @@ const AdminPanel = () => {
                         }
                     </div>
                 </section>
-                <section className='container'>
+                <section className='container my-5'>
                     <h3>Approved Job Post</h3>
                     <div className='row'>
                         {
